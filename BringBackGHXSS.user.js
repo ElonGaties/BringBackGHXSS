@@ -3,7 +3,7 @@
 // @namespace   hhh
 // @match       https://github.com/*
 // @grant       none
-// @version     1.0
+// @version     1.0.1
 // @author      ElonGaties
 // @description 6/8/2024, 2:08:36 PM
 // ==/UserScript==
@@ -55,14 +55,18 @@ async function main() {
   console.log("Math Renderer Exists")
 
   let username = document.URL.split("/").at(-1)
+  let repoData = await fetch(`https://api.github.com/repos/${username}/${username}`).then(response => response.json())
 
-  let raw = await fetch(`https://raw.githubusercontent.com/${username}/${username}/main/README.md`).then(response => response.text()) // TODO: Possibly get default branch name
+  let raw = await fetch(`https://raw.githubusercontent.com/${username}/${username}/${repoData["default_branch"]}/README.md`).then(response => response.text())
   let style = raw.match(/\s*([a-z\-]+)\s*:\s*((?:[^;]*url\(.*?\)[^;]*|[^;]*)*)\s*(?:;|$)/gmi)
 
   let newElement = document.createElement("div") // TODO: Handle multiple elements
   newElement.style = style.join("")
 
   rmNode.appendChild(newElement);
+
+  let test = rmNode.querySelectorAll(".flash.flash-error")
+  console.log(test)
 }
 
 main()
