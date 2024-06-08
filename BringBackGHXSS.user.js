@@ -3,9 +3,11 @@
 // @namespace   hhh
 // @match       https://github.com/*
 // @grant       none
-// @version     1.0.1
+// @version     1.0.2
 // @author      ElonGaties
 // @description 6/8/2024, 2:08:36 PM
+// @downloadURL https://github.com/ElonGaties/BringBackGHXSS/raw/main/BringBackGHXSS.user.js
+// @homepageURL https://github.com/ElonGaties/BringBackGHXSS
 // ==/UserScript==
 
 function waitForElm(selector) {
